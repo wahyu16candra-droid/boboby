@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Get Coins - TikTok Recharge</title>
+
+<style>
+/* =========================================
+   ULTRA HD DISPLAY ENGINE & RESET
+========================================= */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+}
+
+html, body{
+    width:100%;
+    height:100dvh;
+    overflow:hidden;
+    background:#000;
+    font-family:Roboto, Arial, sans-serif;
+    color:#222;
+}
+
+button, input{font-family:inherit;}
+button{-webkit-tap-highlight-color:transparent;}
+
+:root{
+    --primary:#fe2c55;
+    --sharp-text:#171717;
+    --sharp-muted:#62676e;
+    --sharp-border:#e6e8eb;
+}
+
+/* CONTAINER UTAMA LAYAR PENUH */
+.app-container{
+    width:100%;
+    height:100dvh;
+    max-width:500px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    background:#fff;
+    position:relative;
+    overflow:hidden;
+}
+
+/* ==========================================================
+   1. SETENGAH ATAS: TEMPAT VIDEO (50% LAYAR)
+========================================================== */
+.half-video-section{
+    position:relative;
+    width:100%;
+    height:50%;
+    background:#0c0d12;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+#bgStreamVideo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Bar Header di Atas Video */
+.video-overlay-bar{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    padding:10px 12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    z-index:20;
+}
+
+.live-badge{
+    background:#fe2c55;
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+    padding:3px 8px;
+    border-radius:4px;
+    letter-spacing:0.5px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.live-badge::before{
+    content:'';
+    width:5px;
+    height:5px;
+    background:#fff;
+    border-radius:50%;
+    display:inline-block;
+    animation:blinkDot 1s infinite alternate;
+}
+
+@keyframes blinkDot{
+    from{opacity:1;}
+    to{opacity:0.3;}
+}
+
+.video-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    position:relative;
+}
+
+.upload-icon-btn,
+.menu-hamburger-btn{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.25);
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.upload-icon-btn:active,
+.menu-hamburger-btn:active{
+    transform:scale(0.92);
+}
+
+.upload-icon-btn svg{
+    width:16px;
+    height:16px;
+    stroke:#fff;
+    stroke-width:2;
+    fill:none;
+}
+
+/* Dropdown Menu Garis 3 */
+.header-menu-dropdown{
+    display:none;
+    position:absolute;
+    top:38px;
+    right:0;
+    background:#ffffff;
+    border-radius:10px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+    min-width:180px;
+    z-index:99;
+    overflow:hidden;
+}
+
+.header-menu-dropdown.show{display:block;}
+
+.header-menu-dropdown button{
+    width:100%;
+    padding:11px 14px;
+    border:none;
+    background:none;
+    font-size:12px;
+    color:#111;
+    font-weight:600;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    cursor:pointer;
+    border-bottom:1px solid #f2f3f5;
+}
+.header-menu-dropdown button:last-child{border-bottom:none;}
+.header-menu-dropdown button:active{background:#f8f9fa;}
+.header-menu-dropdown button svg{width:16px;height:16px;flex-shrink:0;}
+
+/* ==========================================================
+   2. SETENGAH BAWAH: WEB KOIN (DIBAGI 2 KIRI & KANAN)
+========================================================== */
+.half-coins-section{
+    width:100%;
+    height:50%;
+    background:#fff;
+    display:flex;
+    position:relative;
+    overflow:hidden;
+    border-top:2px solid var(--sharp-border);
+}
+
+/* ---------------- SISI KIRI: DATA AKUN TARGET ---------------- */
+.split-left-account{
+    width:50%;
+    height:100%;
+    background:#ffffff;
+    padding:8px 7px;
+    border-right:1px solid var(--sharp-border);
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
+    scrollbar-width:none;
+}
+.split-left-account::-webkit-scrollbar{display:none;}
+
+.pane-title{
+    font-size:10px;
+    font-weight:800;
+    color:#8a8b91;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+    margin-bottom:6px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.pane-title img{
+    width:14px;
+    height:14px;
+}
+
+/* Input Username Target TikTok */
+.target-input-row{
+    position:relative;
+    width:100%;
+    margin-bottom:6px;
+}
+
+.target-input-row input{
+    width:100%;
+    background:#fafafa;
+    border:1px solid #dfe2e6;
+    border-radius:7px;
+    padding:6px 24px 6px 7px;
+    font-size:11px;
+    font-weight:500;
+    color:#171717;
+    outline:none;
+}
+.target-input-row input:focus{
+    border-color:var(--primary);
+    background:#fff;
+    box-shadow:0 0 0 2px rgba(254,44,85,.08);
+}
+
+.target-spinner{
+    display:none;
+    position:absolute;
+    right:6px;
+    top:50%;
+    transform:translateY(-50%);
+    width:12px;
+    height:12px;
+    border:2px solid #ddd;
+    border-top-color:var(--primary);
+    border-radius:50%;
+    animation:spin .65s linear infinite;
+}
+.target-spinner.show{display:block;}
+
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg);}}
+
+.target-error-txt{
+    display:none;
+    color:#d93025;
+    font-size:8.5px;
+    margin-bottom:4px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* Card Profil Akun Target (Sesuai Web Asli) */
+.account-preview-card{
+    background:#fafafa;
+    border:1px solid #e6e8eb;
+    border-radius:8px;
+    padding:6px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:6px;
+}
+
+.target-avatar-img{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#eee;
+    flex-shrink:0;
+}
+
+.account-details-box{
+    min-width:0;
+    flex:1;
+}
+
+.target-name-line{
+    font-size:11.5px;
+    font-weight:750;
+    color:#171717;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.verified-badge-svg{
+    width:12px;
+    height:12px;
+    flex-shrink:0;
+    display:none;
+}
+.verified-badge-svg.show{display:inline-block;}
+
+.target-uname-line{
+    font-size:9.5px;
+    color:#62676e;
+    font-weight:500;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* Bio Akun Target */
+.target-bio-box{
+    font-size:8.5px;
+    color:#444950;
+    background:#f8f9fa;
+    border:1px solid #eceef0;
+    border-radius:5px;
+    padding:4px 6px;
+    line-height:1.35;
+    margin-bottom:6px;
+    word-break:break-word;
+    max-height:38px;
+    overflow-y:auto;
+}
+
+/* STATISTIK DI ATAS DEKAT BIO */
+.stats-grid-box{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:3px;
+    margin-bottom:6px;
+}
+
+.stat-item-mini{
+    background:#fff;
+    border-radius:5px;
+    padding:4px 1px;
+    text-align:center;
+    border:1px solid #edf0f2;
+}
+.stat-item-mini b{display:block;font-size:9.5px;color:#171717;font-weight:750;}
+.stat-item-mini span{display:block;font-size:6.5px;color:#62676e;font-weight:700;}
+
+/* ---------------- SISI KANAN: PROSES KOIN ---------------- */
+.split-right-process{
+    width:50%;
+    height:100%;
+    background:#ffffff;
+    padding:8px 7px;
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
+    scrollbar-width:none;
+    position:relative;
+}
+.split-right-process::-webkit-scrollbar{display:none;}
+
+.recharge-heading-right h2{
+    font-size:12px;
+    font-weight:650;
+    color:#171717;
+    margin-bottom:1px;
+}
+
+.recharge-heading-right p{
+    font-size:7.5px;
+    color:#fe2c55;
+    line-height:1.2;
+    margin-bottom:6px;
+}
+
+/* Grid Pilihan Koin */
+.coins-grid-tight{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4px;
+    margin-bottom:6px;
+}
+
+.coin-chip{
+    background:#f8f9fa;
+    border:1px solid #e1e3e6;
+    border-radius:6px;
+    padding:5px 2px;
+    color:#171717;
+    cursor:pointer;
+    text-align:center;
+    transition:background .15s, border-color .15s;
+}
+
+.coin-chip.selected{
+    background:#fffdf6;
+    border-color:#e9ad00;
+    box-shadow:0 0 0 1px rgba(255,193,7,.25);
+}
+
+.chip-top{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    font-size:10px;
+    font-weight:750;
+}
+.chip-top img{width:11px;height:11px;}
+
+.chip-price{
+    font-size:8px;
+    color:#777;
+    margin-top:1px;
+}
+
+/* AREA BAYAR & RINGKASAN DINAIKKAN */
+.process-action-box{
+    border-top:1px solid var(--sharp-border);
+    padding-top:4px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.special-offer-mini{
+    display:flex;
+    justify-content:space-between;
+    font-size:7.5px;
+    color:#62676e;
+}
+.special-offer-mini span:last-child{color:#fe2c55;font-weight:600;}
+
+.summary-row-mini{
+    display:flex;
+    justify-content:space-between;
+    font-size:8.5px;
+    color:#666;
+}
+.summary-row-mini b{color:#171717;}
+
+.buy-action-btn{
+    width:100%;
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:7px 0;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(254,44,85,0.2);
+    margin-top:2px;
+}
+.buy-action-btn:active{transform:scale(0.98);}
+
+/* ==========================================================
+   POPUP OVERLAY INTERNAL PAS DI TENGAH WEB KANAN
+========================================================== */
+.right-inner-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:6px;
+    z-index:60;
+    backdrop-filter:blur(2px);
+}
+.right-inner-overlay.show{display:flex;}
+
+.right-center-card{
+    background:#fff;
+    width:100%;
+    max-height:98%;
+    border-radius:10px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    display:flex;
+    flex-direction:column;
+    padding:8px 7px;
+    overflow-y:auto;
+    scrollbar-width:none;
+    animation:popInCenter .18s ease-out;
+}
+.right-center-card::-webkit-scrollbar{display:none;}
+
+@keyframes popInCenter{
+    from{transform:scale(0.88);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.right-center-card header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom:4px;
+    margin-bottom:5px;
+    border-bottom:1px solid #f0f0f0;
+}
+.right-center-card header h2{
+    font-size:11px;
+    font-weight:750;
+    margin:0;
+    color:#111;
+}
+
+.modal-close-sm{
+    background:none;
+    border:none;
+    font-size:13px;
+    cursor:pointer;
+    color:#666;
+    padding:0 2px;
+}
+
+/* Keypad Custom di Dalam Web Kanan */
+.coin-input-box-sm{
+    display:flex;
+    align-items:center;
+    border:1px solid #dfe2e6;
+    border-radius:5px;
+    padding:3px 6px;
+    margin:3px 0;
+    background:#fff;
+}
+.coin-input-box-sm img{height:13px;margin-right:4px;}
+.coin-input-box-sm input{border:none;font-size:12px;font-weight:750;width:100%;outline:none;}
+
+.keypad-grid-sm{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:3px;
+    margin:4px 0;
+}
+.keypad-grid-sm button{
+    background:#f8f9fa;
+    border:1px solid #e6e8eb;
+    border-radius:4px;
+    padding:5px 0;
+    font-size:10px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.btn-apply-sm{
+    width:100%;
+    padding:6px;
+    border:none;
+    border-radius:5px;
+    background:var(--primary);
+    color:#fff;
+    font-size:10.5px;
+    font-weight:750;
+    cursor:pointer;
+    margin-top:auto;
+}
+
+/* Pilihan Pembayaran */
+.payment-choice-sm{
+    display:flex;
+    align-items:center;
+    border:1px solid #e6e8eb;
+    border-radius:5px;
+    padding:4px 6px;
+    margin-bottom:3px;
+    cursor:pointer;
+    font-size:9px;
+    justify-content:space-between;
+}
+.payment-choice-sm.selected{
+    background:#f5f9ff;
+    border-color:#1677e8;
+}
+
+/* Loader TikTok di Tengah Web Kanan */
+.tiktok-loader-sm{
+    position:relative;
+    width:54px;
+    height:28px;
+    margin:6px auto;
+}
+.tiktok-loader-sm .dot{
+    position:absolute;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+}
+.tiktok-loader-sm .dot.red{background:var(--primary);mix-blend-mode:multiply;animation:moveRight .7s ease-in-out infinite;}
+.tiktok-loader-sm .dot.cyan{background:#00f2ea;mix-blend-mode:multiply;animation:moveLeft .7s ease-in-out infinite;}
+
+@keyframes moveLeft{0%,100%{transform:translateX(0)}50%{transform:translateX(-12px) scale(.8)}}
+@keyframes moveRight{0%,100%{transform:translateX(0)}50%{transform:translateX(12px) scale(.8)}}
+
+/* ==========================================================
+   MODAL RIWAYAT TRANSAKSI (POPUP UMUM)
+========================================================== */
+.overlay-full{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:15px;
+}
+.overlay-full.show{display:flex;}
+
+.modal-sheet{
+    background:#fff;
+    width:90%;
+    max-width:320px;
+    border-radius:14px;
+    padding:14px;
+    color:#171717;
+}
+</style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- ==========================================================
+         1. SETENGAH ATAS: TEMPAT VIDEO (50%)
+    ========================================================== -->
+    <div class="half-video-section">
+        <video id="bgStreamVideo" autoplay loop muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-vlogger-recording-video-for-social-media-42777-large.mp4" type="video/mp4">
+        </video>
+
+        <!-- Overlay Bar di Atas Video -->
+        <div class="video-overlay-bar">
+            <div class="live-badge">LIVE</div>
+
+            <div class="video-actions">
+                <!-- Tombol Kamera Cepat -->
+                <button class="upload-icon-btn" id="quickCameraBtn" title="Upload Video">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </button>
+
+                <!-- Tombol Garis 3 Menu -->
+                <button class="menu-hamburger-btn" id="menuBtn" title="Menu">☰</button>
+
+                <!-- Dropdown Menu -->
+                <div class="header-menu-dropdown" id="menuDropdown">
+                    <button id="menuUploadVideo">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 14H5V8h14v10m-7-2l3-4 2 2.5 3-3.8 4 5.3H6l4-5.3 2 2.3Z"/></svg>
+                        Upload Video (Galeri / Kamera)
+                    </button>
+                    <button id="menuRiwayat">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9m-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12Z"/></svg>
+                        Riwayat Transaksi
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input File Video Tersembunyi (Galeri / Kamera) -->
+        <input type="file" id="videoFileInput" accept="video/*" style="display:none;">
+    </div>
+
+    <!-- ==========================================================
+         2. SETENGAH BAWAH: WEB KOIN (DIBAGI 2 KIRI & KANAN)
+    ========================================================== -->
+    <div class="half-coins-section">
+
+        <!-- SISI KIRI: DATA AKUN TARGET -->
+        <div class="split-left-account">
+            <div class="pane-title">
+                <img src="https://static.vecteezy.com/system/resources/previews/020/964/382/original/tiktok-circle-icon-for-web-design-free-png.png" alt="TikTok">
+                <span>Data Akun Target</span>
+            </div>
+
+            <!-- Input Username Target TikTok -->
+            <div class="target-input-row">
+                <input id="targetUsernameInput" type="text" placeholder="Username TikTok..." autocomplete="off" spellcheck="false">
+                <span id="topTargetSpinner" class="target-spinner"></span>
+            </div>
+            <div id="targetStatus" class="target-error-txt"></div>
+
+            <!-- Kartu Profil Target -->
+            <div class="account-preview-card">
+                <img id="targetAvatar" class="target-avatar-img" src="https://static.vecteezy.com/system/resources/previews/020/964/382/original/tiktok-circle-icon-for-web-design-free-png.png" alt="Foto profil target">
+                <div class="account-details-box">
+                    <div class="target-name-line">
+                        <span id="targetName">-</span>
+                        <svg id="targetVerifiedBadge" class="verified-badge-svg" viewBox="0 0 24 24">
+                            <path fill="#20A8E7" d="M12 1.5l2.45 1.65 2.95-.25 1.35 2.65 2.7 1.25-.35 3 1.7 2.2-1.7 2.35.35 2.9-2.7 1.35-1.35 2.6-2.95-.25L12 22.5l-2.45-1.65-2.95.25-1.35-2.6-2.7-1.35.35-2.9L1.2 12l1.7-2.2-.35-3 2.7-1.25L6.6 2.9l2.95.25z"/>
+                            <path d="M7.5 12.2l3 3 6.2-6.3" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="target-uname-line" id="targetUsername">-</div>
+                </div>
+            </div>
+
+            <!-- Bio Akun Target -->
+            <div class="target-bio-box" id="targetBio">Ketik username untuk mendeteksi data akun target...</div>
+
+            <!-- STATISTIK (FOLLOWING, FOLLOWERS, LIKES) TEPAT DI BAWAH BIO -->
+            <div class="stats-grid-box">
+                <div class="stat-item-mini">
+                    <b id="targetFollowing">-</b>
+                    <span>FOLLOWING</span>
+                </div>
+                <div class="stat-item-mini">
+                    <b id="targetFollowers">-</b>
+                    <span>FOLLOWERS</span>
+                </div>
+                <div class="stat-item-mini">
+                    <b id="targetLikes">-</b>
+                    <span>LIKES</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SISI KANAN: PROSES KOIN -->
+        <div class="split-right-process">
+            <div class="recharge-heading-right">
+                <h2>Recharge</h2>
+                <p>Save around 25% with a lower third-party service fee.</p>
+            </div>
+
+            <!-- Grid Pilihan Koin -->
+            <div class="coins-grid-tight">
+                <div class="coin-chip selected" data-coins="30" data-price="0.31">
+                    <div class="chip-top">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <span>30</span>
+                    </div>
+                    <div class="chip-price">$0.31</div>
+                </div>
+
+                <div class="coin-chip" data-coins="350" data-price="3.65">
+                    <div class="chip-top">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <span>350</span>
+                    </div>
+                    <div class="chip-price">$3.65</div>
+                </div>
+
+                <div class="coin-chip" data-coins="700" data-price="7.25">
+                    <div class="chip-top">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <span>700</span>
+                    </div>
+                    <div class="chip-price">$7.25</div>
+                </div>
+
+                <div class="coin-chip" data-coins="1400" data-price="14.49">
+                    <div class="chip-top">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <span>1,400</span>
+                    </div>
+                    <div class="chip-price">$14.49</div>
+                </div>
+
+                <div class="coin-chip" data-coins="3500" data-price="36.20">
+                    <div class="chip-top">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <span>3,500</span>
+                    </div>
+                    <div class="chip-price">$36.20</div>
+                </div>
+
+                <div class="coin-chip" id="btnOpenCustomModal">
+                    <div class="chip-top">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <span id="customChipTxt">Custom</span>
+                    </div>
+                    <div class="chip-price" id="customChipPrice">Amount</div>
+                </div>
+            </div>
+
+            <!-- AREA BAYAR & RINGKASAN DINAIKKAN -->
+            <div class="process-action-box">
+                <div class="special-offer-mini">
+                    <span>Special offer</span>
+                    <span>Unlock 5% cash back &gt;</span>
+                </div>
+                <div class="summary-row-mini">
+                    <span>Total Amount:</span>
+                    <b id="summaryPriceDisplay" style="color:var(--primary);">$0.31</b>
+                </div>
+
+                <button class="buy-action-btn" id="btnBuyRecharge">
+                    Buy for $0.31
+                </button>
+            </div>
+
+            <!-- ==========================================================
+                 1. POPUP INPUT MANUAL / CUSTOM (PAS DI TENGAH WEB KANAN)
+            ========================================================== -->
+            <div class="right-inner-overlay" id="customModal">
+                <div class="right-center-card">
+                    <header>
+                        <h2>Custom</h2>
+                        <button class="modal-close-sm" id="modalBackBtn">✕</button>
+                    </header>
+
+                    <span style="font-size:8px;color:#62676e;">Coin Amount (0 - 2,500,000)</span>
+                    <div class="coin-input-box-sm">
+                        <img src="https://tikpopular.com/wp-content/coins.png" alt="c">
+                        <input id="coinAmountInput" type="text" value="30" readonly>
+                    </div>
+                    <div style="font-size:9.5px;font-weight:700;margin-bottom:2px;" id="usdAmountDisplay">$0.31</div>
+
+                    <div class="keypad-grid-sm" id="keypad">
+                        <button>1</button><button>2</button><button>3</button><button>⌫</button>
+                        <button>4</button><button>5</button><button>6</button><button>000</button>
+                        <button>7</button><button>8</button><button>9</button><button>0</button>
+                    </div>
+
+                    <button class="btn-apply-sm" id="rechargeBtn">Recharge</button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+                 2. POPUP KETERANGAN PEMBELIAN (PAS DI TENGAH WEB KANAN)
+            ========================================================== -->
+            <div class="right-inner-overlay" id="orderModal">
+                <div class="right-center-card">
+                    <header>
+                        <h2>Order summary</h2>
+                        <button class="modal-close-sm" id="summaryBackBtn">✕</button>
+                    </header>
+
+                    <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;">
+                        <span style="color:#62676e;">Account</span>
+                        <b id="accountName" style="max-width:85px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Guest</b>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:6px;">
+                        <span id="summaryCoins">30 Coins</span>
+                        <b id="summaryPrice" style="color:var(--primary);">$0.31</b>
+                    </div>
+
+                    <div style="font-size:9px;font-weight:700;margin-bottom:3px;">Payment method</div>
+                    <div class="payment-choice-sm selected" data-method="Visa">
+                        <span>Visa</span>
+                        <b>✓</b>
+                    </div>
+                    <div class="payment-choice-sm" data-method="Mastercard">
+                        <span>Mastercard</span>
+                        <b></b>
+                    </div>
+
+                    <button class="btn-apply-sm" id="payNowBtn" style="margin-top:auto;">Pay now</button>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+                 3. POPUP PROSES LOADER (PAS DI TENGAH WEB KANAN)
+            ========================================================== -->
+            <div class="right-inner-overlay" id="loaderModal">
+                <div class="right-center-card" style="text-align:center;justify-content:center;padding:12px 8px;">
+                    <div class="tiktok-loader-sm">
+                        <div class="dot red"></div>
+                        <div class="dot cyan"></div>
+                    </div>
+                    <p id="processingMessage" style="font-size:10px;font-weight:700;margin-top:5px;color:#555;">Processing your payment...</p>
+                    <p id="countdownTimer" style="font-size:11px;color:var(--primary);font-weight:800;margin-top:3px;">00:03</p>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+                 4. POPUP BERHASIL / SUKSES (PAS DI TENGAH WEB KANAN)
+            ========================================================== -->
+            <div class="right-inner-overlay" id="successModal">
+                <div class="right-center-card" style="text-align:center;justify-content:center;padding:10px 8px;">
+                    <h2 style="font-size:12.5px;color:#16a34a;margin-bottom:4px;">Successful recharge!</h2>
+                    <div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:800;margin-bottom:6px;">
+                        <img src="https://tikpopular.com/wp-content/coins.png" style="width:15px;" alt="c">
+                        <span id="successCoinsText">30 Coins</span>
+                    </div>
+                    <p style="font-size:8.5px;color:#62676e;line-height:1.35;margin-bottom:8px;">
+                        Coins will be credited to account <b id="successTargetText">TikTok</b>.
+                    </p>
+                    <button class="btn-apply-sm" id="goBackBtn">Selesai</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================================
+     MODAL RIWAYAT TRANSAKSI (POPUP UMUM)
+========================================================== -->
+<div class="overlay-full" id="historyModal">
+    <div class="modal-sheet">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:750;font-size:13px;">
+            <span>Riwayat Transaksi</span>
+            <span style="cursor:pointer;" id="historyBackBtn">✕</span>
+        </div>
+        <div id="historyList" style="max-height:200px;overflow-y:auto;font-size:10.5px;">
+            <div style="text-align:center;color:#888;padding:20px 0;">Belum ada riwayat transaksi.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ========================================================
+   1. DETEKSI & RESET AKUN TIKTOK (API TIKWM LENGKAP)
+======================================================== */
+var targetUsernameInput = document.getElementById('targetUsernameInput');
+var topTargetSpinner = document.getElementById('topTargetSpinner');
+var targetStatus = document.getElementById('targetStatus');
+var targetAvatar = document.getElementById('targetAvatar');
+var targetName = document.getElementById('targetName');
+var targetVerifiedBadge = document.getElementById('targetVerifiedBadge');
+var targetUsername = document.getElementById('targetUsername');
+var targetFollowers = document.getElementById('targetFollowers');
+var targetFollowing = document.getElementById('targetFollowing');
+var targetLikes = document.getElementById('targetLikes');
+var targetBio = document.getElementById('targetBio');
+
+var detectedTarget = null;
+var targetDetectTimer = null;
+var targetRequestId = 0;
+var lastDetectedValue = '';
+
+function statNumber(val){
+    if(val===null||val===undefined||val==='') return '0';
+    var n = Number(String(val).replace(/,/g,''));
+    if(!Number.isFinite(n)) return String(val);
+    if(n >= 1000000000) return (n/1000000000).toFixed(1).replace(/\.0$/,'') + 'B';
+    if(n >= 1000000) return (n/1000000).toFixed(1).replace(/\.0$/,'') + 'M';
+    if(n >= 1000) return (n/1000).toFixed(1).replace(/\.0$/,'') + 'K';
+    return n.toLocaleString('id-ID');
+}
+
+function normalizeInput(v){
+    v = String(v||'').trim();
+    if(!v) return '';
+    v = v.replace(/^https?:\/\/(?:www\.|m\.)?tiktok\.com\//i,'');
+    v = v.replace(/^@/,'');
+    return v.split(/[/?#]/)[0].trim();
+}
+
+function renderAccount(data){
+    detectedTarget = data;
+
+    targetAvatar.src = data.avatar || '';
+    targetAvatar.onerror = function(){
+        targetAvatar.src = 'https://static.vecteezy.com/system/resources/previews/020/964/382/original/tiktok-circle-icon-for-web-design-free-png.png';
+    };
+
+    targetName.textContent = data.name || data.username;
+    targetUsername.textContent = '@' + data.username;
+
+    if(data.verified) targetVerifiedBadge.classList.add('show');
+    else targetVerifiedBadge.classList.remove('show');
+
+    targetFollowers.textContent = statNumber(data.followers);
+    targetFollowing.textContent = statNumber(data.following);
+    targetLikes.textContent = statNumber(data.likes);
+    targetBio.textContent = data.bio || 'Tidak ada bio.';
+
+    targetStatus.style.display = 'none';
+}
+
+function resetTarget(){
+    clearTimeout(targetDetectTimer);
+    targetRequestId++;
+
+    detectedTarget = null;
+    lastDetectedValue = '';
+
+    targetUsernameInput.value = '';
+    topTargetSpinner.classList.remove('show');
+
+    targetStatus.textContent = '';
+    targetStatus.style.display = 'none';
+
+    targetName.textContent = '-';
+    targetUsername.textContent = '-';
+    targetVerifiedBadge.classList.remove('show');
+
+    targetFollowing.textContent = '-';
+    targetFollowers.textContent = '-';
+    targetLikes.textContent = '-';
+
+    targetBio.textContent = 'Ketik username untuk mendeteksi data akun target...';
+
+    targetAvatar.src = 'https://static.vecteezy.com/system/resources/previews/020/964/382/original/tiktok-circle-icon-for-web-design-free-png.png';
+
+    // Kembalikan seleksi koin ke default (30 koin)
+    coinChips.forEach(c => c.classList.remove('selected'));
+    var defChip = document.querySelector('.coin-chip[data-coins="30"]');
+    if(defChip) defChip.classList.add('selected');
+
+    selectedCoins = 30;
+    selectedPrice = 0.31;
+    customStr = '30';
+    updateCoinDisplays();
+    resetCustomButtonState();
+}
+
+function queryTikTok(username){
+    var requestId = ++targetRequestId;
+    topTargetSpinner.classList.add('show');
+
+    fetch('https://www.tikwm.com/api/user/info/', {
+        method:'POST',
+        headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        body:'unique_id=' + encodeURIComponent(username)
+    })
+    .then(r => r.json())
+    .then(j => {
+        if(requestId !== targetRequestId) return;
+        topTargetSpinner.classList.remove('show');
+
+        if(j.code === 0 && j.data){
+            var u = j.data.user || {};
+            var s = j.data.stats || {};
+            lastDetectedValue = username.toLowerCase();
+            renderAccount({
+                username: u.uniqueId || username,
+                name: u.nickname || username,
+                avatar: u.avatarLarger || u.avatarThumb || '',
+                followers: s.followerCount || 0,
+                following: s.followingCount || 0,
+                likes: s.heartCount || 0,
+                bio: u.signature || '',
+                verified: !!u.verified
+            });
+        } else {
+            targetStatus.textContent = 'Akun tidak ditemukan.';
+            targetStatus.style.display = 'block';
+        }
+    })
+    .catch(() => {
+        if(requestId !== targetRequestId) return;
+        topTargetSpinner.classList.remove('show');
+        targetStatus.textContent = 'Gagal memuat akun.';
+        targetStatus.style.display = 'block';
+    });
+}
+
+targetUsernameInput.addEventListener('input', function(){
+    clearTimeout(targetDetectTimer);
+    var u = normalizeInput(targetUsernameInput.value);
+    if(!u){
+        resetTarget();
+        return;
+    }
+    if(u.toLowerCase() === lastDetectedValue){
+        topTargetSpinner.classList.remove('show');
+        return;
+    }
+    targetDetectTimer = setTimeout(function(){
+        queryTikTok(u);
+    }, 700);
+});
+
+/* ========================================================
+   2. SISTEM GANTI VIDEO LIVE (GALERI / KAMERA DARI MENU ☰)
+======================================================== */
+var menuBtn = document.getElementById('menuBtn');
+var menuDropdown = document.getElementById('menuDropdown');
+var menuUploadVideo = document.getElementById('menuUploadVideo');
+var quickCameraBtn = document.getElementById('quickCameraBtn');
+var videoFileInput = document.getElementById('videoFileInput');
+var bgStreamVideo = document.getElementById('bgStreamVideo');
+
+menuBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    menuDropdown.classList.toggle('show');
+});
+
+document.addEventListener('click', function(e){
+    if(!menuDropdown.contains(e.target) && e.target !== menuBtn){
+        menuDropdown.classList.remove('show');
+    }
+});
+
+quickCameraBtn.addEventListener('click', function(){
+    videoFileInput.click();
+});
+
+menuUploadVideo.addEventListener('click', function(){
+    menuDropdown.classList.remove('show');
+    videoFileInput.click();
+});
+
+videoFileInput.addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+
+    if(file.type.startsWith('video/')){
+        var url = URL.createObjectURL(file);
+        bgStreamVideo.src = url;
+        bgStreamVideo.load();
+        bgStreamVideo.play();
+    } else {
+        alert('Pilih file berformat video.');
+    }
+    videoFileInput.value = '';
+});
+
+/* ========================================================
+   3. SELEKSI KOIN & MODAL CUSTOM (PAS DI TENGAH WEB KANAN)
+======================================================== */
+var selectedCoins = 30;
+var selectedPrice = 0.31;
+
+var summaryPriceDisplay = document.getElementById('summaryPriceDisplay');
+var btnBuyRecharge = document.getElementById('btnBuyRecharge');
+var coinChips = document.querySelectorAll('.coin-chip:not(#btnOpenCustomModal)');
+
+function updateCoinDisplays(){
+    var pStr = '$' + selectedPrice.toFixed(2);
+    summaryPriceDisplay.textContent = pStr;
+    btnBuyRecharge.textContent = 'Buy for ' + pStr;
+}
+
+coinChips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+        coinChips.forEach(c => c.classList.remove('selected'));
+        document.getElementById('btnOpenCustomModal').classList.remove('selected');
+        chip.classList.add('selected');
+
+        selectedCoins = parseInt(chip.getAttribute('data-coins'));
+        selectedPrice = parseFloat(chip.getAttribute('data-price'));
+        updateCoinDisplays();
+    });
+});
+
+// Custom Modal Keypad di Sebelah Kanan
+var customModal = document.getElementById('customModal');
+var btnOpenCustomModal = document.getElementById('btnOpenCustomModal');
+var modalBackBtn = document.getElementById('modalBackBtn');
+var coinAmountInput = document.getElementById('coinAmountInput');
+var usdAmountDisplay = document.getElementById('usdAmountDisplay');
+var keypad = document.getElementById('keypad');
+var rechargeBtn = document.getElementById('rechargeBtn');
+
+var customStr = '30';
+
+function resetCustomButtonState(){
+    document.getElementById('customChipTxt').textContent = 'Custom';
+    document.getElementById('customChipPrice').textContent = 'Amount';
+    document.getElementById('btnOpenCustomModal').classList.remove('selected');
+}
+
+btnOpenCustomModal.addEventListener('click', function(){
+    customModal.classList.add('show');
+});
+modalBackBtn.addEventListener('click', function(){
+    customModal.classList.remove('show');
+});
+
+keypad.addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if(!b) return;
+    var v = b.textContent;
+    var n = parseInt(customStr) || 0;
+
+    if(v === '⌫'){
+        var s = String(n).slice(0, -1);
+        n = s === '' ? 0 : parseInt(s);
+    } else if(v === '000'){
+        n = n * 1000;
+    } else {
+        n = n * 10 + parseInt(v);
+    }
+
+    if(n > 2500000) n = 2500000;
+    customStr = String(n);
+    coinAmountInput.value = n.toLocaleString('en-US');
+    var usd = (n * 0.010357).toFixed(2);
+    usdAmountDisplay.textContent = '$' + usd;
+});
+
+rechargeBtn.addEventListener('click', function(){
+    var n = parseInt(customStr) || 0;
+    selectedCoins = n;
+    selectedPrice = parseFloat((n * 0.010357).toFixed(2));
+
+    coinChips.forEach(c => c.classList.remove('selected'));
+    btnOpenCustomModal.classList.add('selected');
+
+    document.getElementById('customChipTxt').textContent = n.toLocaleString('en-US');
+    document.getElementById('customChipPrice').textContent = '$' + selectedPrice.toFixed(2);
+
+    updateCoinDisplays();
+    customModal.classList.remove('show');
+});
+
+/* ========================================================
+   4. KETERANGAN PEMBELIAN / ORDER SUMMARY (DI TENGAH WEB KANAN)
+======================================================== */
+var orderModal = document.getElementById('orderModal');
+var summaryBackBtn = document.getElementById('summaryBackBtn');
+var payNowBtn = document.getElementById('payNowBtn');
+var selectedMethod = 'Visa';
+
+btnBuyRecharge.addEventListener('click', function(){
+    var dName = detectedTarget ? (detectedTarget.name || '@' + detectedTarget.username) : 'Guest';
+    document.getElementById('accountName').textContent = dName;
+    document.getElementById('summaryCoins').textContent = Number(selectedCoins).toLocaleString('en-US') + ' Coins';
+    document.getElementById('summaryPrice').textContent = '$' + selectedPrice.toFixed(2);
+    orderModal.classList.add('show');
+});
+
+summaryBackBtn.addEventListener('click', function(){
+    orderModal.classList.remove('show');
+});
+
+document.querySelectorAll('.payment-choice-sm').forEach(function(opt){
+    opt.addEventListener('click', function(){
+        document.querySelectorAll('.payment-choice-sm').forEach(o => {
+            o.classList.remove('selected');
+            o.querySelector('b').textContent = '';
+        });
+        opt.classList.add('selected');
+        opt.querySelector('b').textContent = '✓';
+        selectedMethod = opt.getAttribute('data-method');
+    });
+});
+
+/* ========================================================
+   5. ANIMASI LOADER & SUKSES (DI TENGAH WEB KANAN)
+======================================================== */
+var loaderModal = document.getElementById('loaderModal');
+var successModal = document.getElementById('successModal');
+var countdownTimer = document.getElementById('countdownTimer');
+var historyStore = [];
+
+payNowBtn.addEventListener('click', function(){
+    orderModal.classList.remove('show');
+    loaderModal.classList.add('show');
+
+    var secs = 3;
+    countdownTimer.textContent = '00:03';
+
+    var iv = setInterval(function(){
+        secs--;
+        countdownTimer.textContent = '00:0' + secs;
+        if(secs <= 0){
+            clearInterval(iv);
+            loaderModal.classList.remove('show');
+
+            document.getElementById('successCoinsText').textContent = Number(selectedCoins).toLocaleString('en-US') + ' Coins';
+            document.getElementById('successTargetText').textContent = detectedTarget ? ('@' + detectedTarget.username) : 'TikTok';
+            successModal.classList.add('show');
+
+            historyStore.unshift({
+                user: detectedTarget ? ('@' + detectedTarget.username) : 'Guest',
+                coins: Number(selectedCoins).toLocaleString('en-US'),
+                price: selectedPrice.toFixed(2),
+                method: selectedMethod,
+                time: new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'})
+            });
+        }
+    }, 1000);
+});
+
+// KETIKA TEKAN SELESAI -> AKUN TARGET DAN USERNAME KE-RESET
+function clearAccountAfterSuccess(){
+    successModal.classList.remove('show');
+    resetTarget();
+    targetUsernameInput.focus();
+}
+
+document.getElementById('goBackBtn').addEventListener('click', clearAccountAfterSuccess);
+
+/* ========================================================
+   6. RIWAYAT TRANSAKSI
+======================================================== */
+var menuRiwayat = document.getElementById('menuRiwayat');
+var historyModal = document.getElementById('historyModal');
+var historyBackBtn = document.getElementById('historyBackBtn');
+var historyList = document.getElementById('historyList');
+
+menuRiwayat.addEventListener('click', function(){
+    menuDropdown.classList.remove('show');
+    if(historyStore.length === 0){
+        historyList.innerHTML = '<div style="text-align:center;color:#888;padding:20px 0;">Belum ada riwayat transaksi.</div>';
+    } else {
+        historyList.innerHTML = historyStore.map(function(h){
+            return '<div style="background:#f8f9fa;border-radius:6px;padding:6px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;">'+
+                '<div>'+
+                    '<b>' + h.user + '</b>'+
+                    '<div style="font-size:8.5px;color:#777;">' + h.method + ' • ' + h.time + ' WIB</div>'+
+                '</div>'+
+                '<div style="text-align:right;">'+
+                    '<b style="color:var(--primary);">+' + h.coins + '</b>'+
+                    '<div style="font-size:8.5px;color:#333;">$' + h.price + '</div>'+
+                '</div>'+
+            '</div>';
+        }).join('');
+    }
+    historyModal.classList.add('show');
+});
+
+historyBackBtn.addEventListener('click', function(){
+    historyModal.classList.remove('show');
+});
+</script>
+
+</body>
+</html>
